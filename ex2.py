@@ -66,6 +66,10 @@ class BinaryTree():
             return  brancheGauche + brancheDroite
 
 
+    def numberInternalNodes(self, node):
+        return self.size(node) +1 - self.numberLeaves(node)
+
+
 
 #test programme
 root = Node(12,None,None)
@@ -95,13 +99,12 @@ noeud19.setRight(noeud21)
 noeud18 = Node(18,None,None)
 noeud19.setLeft(noeud18)
 
-exNoeud = noeud3
+exNoeud = root
 #print("hauteur noeud",exNoeud.getVal(),":",arbre.height(exNoeud))
 #print("taille noeud",exNoeud.getVal(),":",arbre.size(exNoeud))
-#arbre.printValues(exNoeud)
-print(arbre.numberLeaves(exNoeud))
-
-
+arbre.printValues(exNoeud)
+#print("nombre de feuille :",arbre.numberLeaves(exNoeud))
+#print("Nombre de noeud interne :",arbre.numberInternalNodes(exNoeud))
 
 
 
