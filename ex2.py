@@ -37,14 +37,33 @@ class BinaryTree():
         tailleNoeuddroite = 1+ self.size(node.getRight())
         tailleNoeudgauche = 1+ self.size(node.getLeft())
         tailleNoeud = tailleNoeuddroite + tailleNoeudgauche
-        print("taille noeud",node.getVal(),":",tailleNoeud)
+
         return tailleNoeud
 
 
+    def printValues(self, node):
+
+        if node!=None and (node.getRight()==None and node.getLeft()==None) :
+            print("valeur de noeud",node.getVal()," :",node.getVal())
+
+        elif node!=None :
+            self.printValues(node.getRight())
+            self.printValues(node.getLeft())
 
 
+    def numberLeaves(self, node):
 
+        if node!=None and (node.getRight()==None and node.getLeft()==None) :
+            return 1
 
+        elif node!=None :
+            brancheDroite = self.numberLeaves(node.getRight())
+            brancheGauche = self.numberLeaves(node.getLeft())
+            if brancheGauche == None:
+                brancheGauche = 0
+            if brancheDroite == None:
+                brancheDroite = 0
+            return  brancheGauche + brancheDroite
 
 
 
@@ -76,9 +95,11 @@ noeud19.setRight(noeud21)
 noeud18 = Node(18,None,None)
 noeud19.setLeft(noeud18)
 
-#print(arbre.height(noeud5))
-print(arbre.size(root))
-
+exNoeud = noeud3
+#print("hauteur noeud",exNoeud.getVal(),":",arbre.height(exNoeud))
+#print("taille noeud",exNoeud.getVal(),":",arbre.size(exNoeud))
+#arbre.printValues(exNoeud)
+print(arbre.numberLeaves(exNoeud))
 
 
 
