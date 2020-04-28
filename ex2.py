@@ -41,14 +41,33 @@ class BinaryTree():
         return tailleNoeud
 
 
+
     def printValues(self, node):
 
         if node!=None and (node.getRight()==None and node.getLeft()==None) :
             print("valeur de noeud",node.getVal()," :",node.getVal())
 
         elif node!=None :
+            print("valeur de noeud",node.getVal()," :",node.getVal())
             self.printValues(node.getRight())
             self.printValues(node.getLeft())
+
+
+
+    def sumValues(self, node):
+
+        if node!=None and (node.getRight()==None and node.getLeft()==None) :
+            return node.getVal()
+
+        elif node!=None :
+            brancheDroite = self.sumValues(node.getRight())
+            brancheGauche = self.sumValues(node.getLeft())
+            if brancheDroite==None:
+                brancheDroite=0
+            if brancheGauche==None:
+                brancheGauche=0
+            total = node.getVal() + brancheDroite + brancheGauche
+            return total
 
 
     def numberLeaves(self, node):
@@ -105,7 +124,7 @@ exNoeud = root
 arbre.printValues(exNoeud)
 #print("nombre de feuille :",arbre.numberLeaves(exNoeud))
 #print("Nombre de noeud interne :",arbre.numberInternalNodes(exNoeud))
-
+print("somme des valeurs de l'arbre :",arbre.sumValues(exNoeud))
 
 
 
