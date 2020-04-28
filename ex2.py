@@ -7,25 +7,12 @@ class BinaryTree():
     def getRoot(self):
         return self.__root
 
+
     def isRoot(self, node):
         if node == self.__root:
             return True
         else:
             return False
-
-
-    def height(self,node):
-
-        if node == None or (node.getLeft()==None and node.getRight()==None) :
-            return 1
-
-        hauteurNoeuddroite = 1+ self.height(node.getRight())
-        hauteurNoeudgauche = 1+ self.height(node.getLeft())
-        hauteurNoeud = max(hauteurNoeuddroite,hauteurNoeudgauche)
-
-        return hauteurNoeud
-
-
 
     def size(self,node):
 
@@ -41,7 +28,6 @@ class BinaryTree():
         return tailleNoeud
 
 
-
     def printValues(self, node):
 
         if node!=None and (node.getRight()==None and node.getLeft()==None) :
@@ -51,7 +37,6 @@ class BinaryTree():
             print("valeur de noeud",node.getVal()," :",node.getVal())
             self.printValues(node.getRight())
             self.printValues(node.getLeft())
-
 
 
     def sumValues(self, node):
@@ -68,6 +53,7 @@ class BinaryTree():
                 brancheGauche=0
             total = node.getVal() + brancheDroite + brancheGauche
             return total
+
 
 
     def numberLeaves(self, node):
@@ -87,6 +73,33 @@ class BinaryTree():
 
     def numberInternalNodes(self, node):
         return self.size(node) +1 - self.numberLeaves(node)
+
+
+
+    def height(self,node):
+
+        if node == None or (node.getLeft()==None and node.getRight()==None) :
+            return 1
+
+        hauteurNoeuddroite = 1+ self.height(node.getRight())
+        hauteurNoeudgauche = 1+ self.height(node.getLeft())
+        hauteurNoeud = max(hauteurNoeuddroite,hauteurNoeudgauche)
+
+        return hauteurNoeud
+
+
+    def belongs(self,node,val):
+
+        if node!=None and node.getVal()== val :
+            return True
+
+        elif node!=None :
+            brancheDroite = self.belongs(node.getRight(),val)
+            brancheGauche = self.belongs(node.getLeft(),val)
+            if brancheDroite==True or brancheGauche==True:
+                return True
+            else:
+                return False
 
 
 
@@ -118,14 +131,14 @@ noeud19.setRight(noeud21)
 noeud18 = Node(18,None,None)
 noeud19.setLeft(noeud18)
 
-exNoeud = root
+exNoeud = noeud5
 #print("hauteur noeud",exNoeud.getVal(),":",arbre.height(exNoeud))
 #print("taille noeud",exNoeud.getVal(),":",arbre.size(exNoeud))
-arbre.printValues(exNoeud)
+#arbre.printValues(exNoeud)
 #print("nombre de feuille :",arbre.numberLeaves(exNoeud))
 #print("Nombre de noeud interne :",arbre.numberInternalNodes(exNoeud))
-print("somme des valeurs de l'arbre :",arbre.sumValues(exNoeud))
-
+#print("somme des valeurs de l'arbre :",arbre.sumValues(exNoeud))
+print(arbre.belongs(exNoeud,17))
 
 
 
