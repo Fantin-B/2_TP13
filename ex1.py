@@ -22,10 +22,10 @@ class Node():
     def setLeft(self,noeud):
         self.__left = noeud
 
+    def __str__(self):
+        return str(self.getVal())
 
 #test programme
 
-#noeud = Node(None,None,None)
-#print(noeud.getVal())
-#print(noeud.getLeft())
-#print(noeud.getRight())
+#noeud = Node(8,5,4)
+#print(noeud)

@@ -14,6 +14,8 @@ class BinaryTree():
         else:
             return False
 
+
+
     def size(self,node):
 
         if node == None:
@@ -25,7 +27,11 @@ class BinaryTree():
         tailleNoeudgauche = 1+ self.size(node.getLeft())
         tailleNoeud = tailleNoeuddroite + tailleNoeudgauche
 
+        if self.isRoot(node)==True:
+            tailleNoeud += 1
+
         return tailleNoeud
+
 
 
     def printValues(self, node):
@@ -79,13 +85,14 @@ class BinaryTree():
     def height(self,node):
 
         if node == None or (node.getLeft()==None and node.getRight()==None) :
-            return 1
+            return 0
 
         hauteurNoeuddroite = 1+ self.height(node.getRight())
         hauteurNoeudgauche = 1+ self.height(node.getLeft())
         hauteurNoeud = max(hauteurNoeuddroite,hauteurNoeudgauche)
 
         return hauteurNoeud
+
 
 
     def belongs(self,node,val):
@@ -100,6 +107,17 @@ class BinaryTree():
                 return True
             else:
                 return False
+
+
+
+    def descendants(self,node,val):
+        if node!=None and node.getVal() == val:
+            self.printValues(node)
+
+        elif node!=None and node.getVal() != val:
+            self.descendants(node.getRight(), val)
+            self.descendants(node.getLeft(), val)
+
 
 
 
@@ -131,16 +149,28 @@ noeud19.setRight(noeud21)
 noeud18 = Node(18,None,None)
 noeud19.setLeft(noeud18)
 
-exNoeud = noeud5
+#noeud1 = Node(1,None,None)
+#noeud21.setRight(noeud1)
+#
+#noeud2 = Node(2,None,None)
+#noeud6.setRight(noeud2)
+#
+#noeud45 = Node(45,None,None)
+#noeud2.setRight(noeud45)
+#
+#noeud46 = Node(46,None,None)
+#noeud45.setRight(noeud46)
+
+
+exNoeud = root
 #print("hauteur noeud",exNoeud.getVal(),":",arbre.height(exNoeud))
 #print("taille noeud",exNoeud.getVal(),":",arbre.size(exNoeud))
 #arbre.printValues(exNoeud)
 #print("nombre de feuille :",arbre.numberLeaves(exNoeud))
 #print("Nombre de noeud interne :",arbre.numberInternalNodes(exNoeud))
 #print("somme des valeurs de l'arbre :",arbre.sumValues(exNoeud))
-print(arbre.belongs(exNoeud,17))
-
-
+#print(arbre.belongs(exNoeud,17))
+arbre.descendants(exNoeud,19)
 
 
 
