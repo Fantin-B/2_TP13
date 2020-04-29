@@ -78,7 +78,7 @@ class BinaryTree():
 
 
     def numberInternalNodes(self, node):
-        return self.size(node) +1 - self.numberLeaves(node)
+        return self.size(node) - self.numberLeaves(node)
 
 
 
@@ -111,12 +111,62 @@ class BinaryTree():
 
 
     def descendants(self,node,val):
+
         if node!=None and node.getVal() == val:
-            self.printValues(node)
+            #print("Descendant :",node.getVal())
+            if node.getRight()!=None:
+                print("Descendant :",node.getRight().getVal())
+                self.descendants(node,node.getRight().getVal())
+            if node.getLeft()!=None:
+                print("Descendant :",node.getLeft().getVal())
+                self.descendants(node,node.getLeft().getVal())
 
         elif node!=None and node.getVal() != val:
             self.descendants(node.getRight(), val)
             self.descendants(node.getLeft(), val)
+
+
+    def ancestors(self,node,val):
+
+        if node!=None and (node.getLeft()!=None or node.getRight()!=None):
+
+            if node.getRight().getVal() == val  or node.getLeft().getVal() == val:
+                print("ancêtre :", node.getVal())
+                self.ancestors(self.__root,node.getVal())
+
+            elif node.getVal() != val:
+                self.ancestors(node.getRight(), val)
+                self.ancestors(node.getLeft(), val)
+
+
+
+    def ancestors2(self,node,val):
+        if node!=None and (node.getLeft()!=None or node.getRight()!=None):
+
+            if node.getRight() != None:
+                print(node.getRight().getVal())
+
+            if node.getLeft()!=None:
+                print(node.getLeft().getVal())
+
+            elif node.getVal() != val:
+                self.ancestors2(node.getRight(), val)
+                self.ancestors2(node.getLeft(), val)
+
+
+
+#            #ici, node redeviens la racine de norte arbre du début
+#            if (node.getRight()!=None and node.getLeft()!=None):
+#                if (node.getRight().getVal()==val or node.getLeft().getVal()==val):
+#                    self.ancestors(node,node.getVal())
+#                    print(1)
+#                elif (node.getRight().getVal()!=val or node.getLeft().getVal()!=val):
+#                    self.ancestors(node, val)
+#                    self.ancestors(node, val)
+
+
+
+
 
 
 
@@ -170,9 +220,8 @@ exNoeud = root
 #print("Nombre de noeud interne :",arbre.numberInternalNodes(exNoeud))
 #print("somme des valeurs de l'arbre :",arbre.sumValues(exNoeud))
 #print(arbre.belongs(exNoeud,17))
-arbre.descendants(exNoeud,19)
-
-
+#arbre.descendants(exNoeud,4)
+arbre.ancestors2(exNoeud,17)
 
 
 
