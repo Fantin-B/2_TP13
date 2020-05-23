@@ -27,8 +27,8 @@ class BinaryTree():
         tailleNoeudgauche = 1+ self.size(node.getLeft())
         tailleNoeud = tailleNoeuddroite + tailleNoeudgauche
 
-        if self.isRoot(node)==True:
-            tailleNoeud += 1
+        #if self.isRoot(node)==True:
+        #    tailleNoeud += 1
 
         return tailleNoeud
 
@@ -78,7 +78,7 @@ class BinaryTree():
 
 
     def numberInternalNodes(self, node):
-        return self.size(node) - self.numberLeaves(node)
+        return self.size(node) +1 - self.numberLeaves(node)
 
 
 
@@ -153,6 +153,26 @@ class BinaryTree():
                 self.ancestors2(node.getRight(), val)
                 self.ancestors2(node.getLeft(), val)
 
+    def prefixe(self,node):
+        if node != None:
+            print(node.getVal())
+            self.prefixe(node.getLeft())
+            self.prefixe(node.getRight())
+
+
+    def infixe(self,node):
+        if node!=None:
+            self.infixe(node.getLeft())
+            print(node.getVal())
+            self.infixe(node.getRight())
+
+    def postfixe(self,node):
+        if node != None:
+            self.postfixe(node.getLeft())
+            self.postfixe(node.getRight())
+            print(node.getVal())
+
+
 
 
 #            #ici, node redeviens la racine de norte arbre du début
@@ -163,78 +183,3 @@ class BinaryTree():
 #                elif (node.getRight().getVal()!=val or node.getLeft().getVal()!=val):
 #                    self.ancestors(node, val)
 #                    self.ancestors(node, val)
-
-
-
-
-
-
-
-
-#test programme
-root = Node(12,None,None)
-arbre = BinaryTree(root)
-
-noeud5 = Node(5,None,None)
-root.setLeft(noeud5)
-
-noeud6 = Node(6,None,None)
-noeud5.setRight(noeud6)
-
-noeud4 = Node(4,None,None)
-noeud5.setLeft(noeud4)
-
-noeud3 = Node(3,None,None)
-noeud4.setLeft(noeud3)
-
-noeud17 = Node(17,None,None)
-root.setRight(noeud17)
-
-noeud19 = Node(19,None,None)
-noeud17.setRight(noeud19)
-
-noeud21 = Node(21,None,None)
-noeud19.setRight(noeud21)
-
-noeud18 = Node(18,None,None)
-noeud19.setLeft(noeud18)
-
-#noeud1 = Node(1,None,None)
-#noeud21.setRight(noeud1)
-#
-#noeud2 = Node(2,None,None)
-#noeud6.setRight(noeud2)
-#
-#noeud45 = Node(45,None,None)
-#noeud2.setRight(noeud45)
-#
-#noeud46 = Node(46,None,None)
-#noeud45.setRight(noeud46)
-
-
-exNoeud = root
-#print("hauteur noeud",exNoeud.getVal(),":",arbre.height(exNoeud))
-#print("taille noeud",exNoeud.getVal(),":",arbre.size(exNoeud))
-#arbre.printValues(exNoeud)
-#print("nombre de feuille :",arbre.numberLeaves(exNoeud))
-#print("Nombre de noeud interne :",arbre.numberInternalNodes(exNoeud))
-#print("somme des valeurs de l'arbre :",arbre.sumValues(exNoeud))
-#print(arbre.belongs(exNoeud,17))
-#arbre.descendants(exNoeud,4)
-arbre.ancestors2(exNoeud,17)
-
-
-
-
-
-def affichageNoeud(noeud):
-    print("Valeur :",noeud.getVal())
-    if noeud.getRight() != None:
-        print("Noeud droit :",noeud.getRight().getVal())
-    else :
-        print("Noeud droit :",None)
-    if noeud.getLeft() != None:
-        print("Noeud gauche :",noeud.getLeft().getVal())
-    else :
-        print("Noeud gauche :",None)
-#affichageNoeud(root)

@@ -5,10 +5,7 @@ class Node():
         self.__left = left
 
     def getVal(self):
-        if self.__val is None:
-            return None
-        else :
-            return self.__val
+        return self.__val
 
     def getRight(self):
         return self.__right
