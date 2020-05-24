@@ -6,14 +6,35 @@ class BinarySearchTree(BinaryTree):
         BinaryTree.__init__(self,root)
         self.__root = root
 
+    def contains(self,node,value):
+        if node!=None:
+            if node.getVal() == value :
+                return True
+            gauche = self.contains(node.getLeft(),value)
+            droite = self.contains(node.getRight(),value)
+            if gauche==True or droite==True:
+                return True
 
+    def findMin(self,node):
+        if node!=None:
+            min = 10000
+            if node.getVal() < min :
+                min = node.getVal()
 
+            gauche = self.findMin(node.getLeft())
+            if gauche < min :
+                min = gauche
 
+            droite = self.findMin(node.getRight())
+            if droite < min :
+                min = droite
+
+            return min
 
 
 #test programme
 root = Node(4,None,None)
-arbre = BinaryTree(root)
+arbre = BinarySearchTree(root)
 
 noeud2 = Node(2,None,None)
 root.setLeft(noeud2)
@@ -43,10 +64,12 @@ noeud15 = Node(15,None,None)
 noeud12.setRight(noeud15)
 
 noeud13 = Node(13,None,None)
-noeud15.setRight(noeud13)
+noeud15.setLeft(noeud13)
 
 noeud14 = Node(14,None,None)
 noeud13.setRight(noeud14)
 
 exNoeud = root
-arbre.infixe(exNoeud)
+#arbre.infixe(exNoeud)
+#print(arbre.contains(exNoeud,12))
+print(arbre.findMin(exNoeud))

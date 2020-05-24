@@ -153,6 +153,7 @@ class BinaryTree():
                 self.ancestors2(node.getRight(), val)
                 self.ancestors2(node.getLeft(), val)
 
+
     def prefixe(self,node):
         if node != None:
             print(node.getVal())
