@@ -176,11 +176,3 @@ class BinaryTree():
 
 
 
-#            #ici, node redeviens la racine de norte arbre du début
-#            if (node.getRight()!=None and node.getLeft()!=None):
-#                if (node.getRight().getVal()==val or node.getLeft().getVal()==val):
-#                    self.ancestors(node,node.getVal())
-#                    print(1)
-#                elif (node.getRight().getVal()!=val or node.getLeft().getVal()!=val):
-#                    self.ancestors(node, val)
-#                    self.ancestors(node, val)
